@@ -5,7 +5,7 @@ Code to reproduce results from the CellRank manuscript
 Let's establish a couple of guidelines that make sure this repo is clean and usable by others.
 
 ## Notebooks, data and figures
-We split these three at the top level of the repository to have one `data`, one `figures` and one `notebooks` folder. These have sub-folders that relate to specific figures/datasets. 
+We split these three at the top level of the repository to have one `data`, one `figures` and one `notebooks` folder. These have sub-folders that relate to specific figures/datasets. The general idea is that `notebooks` and `figures` should have the same folder structure. 
 
 ### Notebooks
 - save under `~/notebooks/fig_X_title/` or  `~/notebooks/suppl_fig_title/`
