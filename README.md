@@ -5,11 +5,12 @@ Code to reproduce results from the CellRank manuscript
 Let's establish a couple of guidelines that make sure this repo is clean and usable by others.
 
 ## Notebooks, data and figures
-We split these three at the top level of the repository to have one `data`, one `figures` and one `notebooks` folder. These have sub-folders that relate to specific figures/datasets. 
+We split these three at the top level of the repository to have one `data`, one `figures` and one `notebooks` folder. These have sub-folders that relate to specific figures/datasets. The general idea is that `notebooks` and `figures` should have the same folder structure. 
 
 ### Notebooks
-- save under `~/notebooks/fig_X_title/` or  `~/notebooks/suppl_fig_X_title/`
-- naming conventions: call the notebook `DATE_INITIALS_fig_X_title` or`DATE_INITIALS_suppl_fig_X_title`
+- save under `~/notebooks/fig_X_title/` or  `~/notebooks/suppl_fig_title/`
+- **Note**: there are too many supplemental figures to currently give each a number because it's quite likely these will still change. That's why for main figures, we include the number in the folder name while for supplemental figures, we do not. 
+- naming conventions: call the notebook `DATE_INITIALS_fig_X_title` or`DATE_INITIALS_suppl_fig_title`
 - structure notebooks by sections, give each section an imperative title (e.g. "Identify initial states", "Import data"), capitalize titles. 
 - define a **data path** and a **figure path** at the beginning of each notebook. These define where the data is read from and where figures are written to
 - use **relative paths**
@@ -23,7 +24,7 @@ Many notebooks will use the same data, so we **do not** spit up the data folder 
 
 ### Figures
 Figures are, as the name conveys, figure specific, so we save them in folders separated by the figure name
-- Write figures to `~figures/fig_X_title/` or `~figures/suppl_fig_X_title/`
+- Write figures to `~figures/fig_X_title/` or `~figures/suppl_fig_title/`
 - If you are not sure about the **number of the figure you're producing** then check in the manuscript!
 
 ## Anything else?
