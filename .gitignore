@@ -130,3 +130,11 @@ dmypy.json
 
 # custom patterns
 **.DS_Store
+*.csv
+*.pickle
+*.h5ad
+*.pdf
+*.png
+*.jpg
+*.jpeg
+*.svg
