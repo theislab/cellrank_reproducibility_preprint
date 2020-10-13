@@ -130,3 +130,6 @@ dmypy.json
 
 # custom patterns
 **.DS_Store
+
+data/**
+cache/**
