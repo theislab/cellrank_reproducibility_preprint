@@ -113,7 +113,7 @@ for (i in seq_along(sizes)) {
             }
             
             res[j, i] = runtime
-            write.csv(res, "../../../data/runtime_analysis/fateid.csv")
+            write.csv(res, "../../../data/benchmarking/runtime_analysis/fateid.csv")
         }
     },
     error=function(e) {print(e)}
