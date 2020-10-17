@@ -10,7 +10,7 @@ figure       | notebook path
 | Fig. 1 | notebooks/fig_1_concept/ML_2020-10-13_fig_1_concept.ipynb|
 | Fig. 2 | notebooks/fig_2_pancreas_main/ML-2020-10-14_fig_2_and_3_pancreas_main.ipynb|
 | Fig. 3 | notebooks/fig_2_pancreas_main/ML-2020-10-14_fig_2_and_3_pancreas_main.ipynb|
-| Fig. 4 | notebooks/ |
+| Fig. 4 | notebooks/fig_4_uncertainty/ML-2020-10-17_fig_4_uncertainty.ipynb and XXX |
 | Fig. 5 | notebooks/ |  
 | Fig. 6 | notebooks/ |
 | Supplementary Fig. 1 | notebooks/suppl_fig_GPCCA/ML-2020-10-17_GPCCA_toy_example.ipynb |
@@ -26,7 +26,7 @@ figure       | notebook path
 | Supplementary Fig. 11 | notebooks/fig_2_pancreas_main/ML-2020-10-14_fig_2_and_3_pancreas_main.ipynb |
 | Supplementary Fig. 12 | notebooks/fig_2_pancreas_main/ML-2020-10-14_fig_2_and_3_pancreas_main.ipynb |
 | Supplementary Fig. 13 | notebooks/fig_2_pancreas_main/ML-2020-10-14_fig_2_and_3_pancreas_main.ipynb |
-| Supplementary Fig. 14 | notebooks/ |
+| Supplementary Fig. 14 | notebooks/fig_4_uncertainty/ML-2020-10-17_fig_4_uncertainty.ipynb and XXX  |
 | Supplementary Fig. 15 | notebooks/ |
 | Supplementary Fig. 16 | notebooks/ |
 | Supplementary Fig. 17 | notebooks/fig_2_pancreas_main/ML-2020-10-14_fig_2_and_3_pancreas_main.ipynb and XXX |
