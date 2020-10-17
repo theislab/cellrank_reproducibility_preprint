@@ -1,5 +1,5 @@
 # cellrank_reproducibility
-Code to reproduce results from the CellRank manuscript
+Code to reproduce results from the CellRank manuscript. Please find the main CellRank website at [cellrank.org](https://cellrank.org).
 
 ## Usage guidelines
 See the wiki pages.
