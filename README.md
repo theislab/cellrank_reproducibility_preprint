@@ -13,7 +13,7 @@ figure       | notebook path
 | Fig. 4 | notebooks/ |
 | Fig. 5 | notebooks/ |  
 | Fig. 6 | notebooks/ |
-| Supplementary Fig. 1 | notebooks/ |
+| Supplementary Fig. 1 | notebooks/suppl_fig_GPCCA/ML-2020-10-17_GPCCA_toy_example.ipynb |
 | Supplementary Fig. 2 | notebooks/fig_2_pancreas_main/ML-2020-10-14_fig_2_and_3_pancreas_main.ipynb |
 | Supplementary Fig. 3 | notebooks/fig_2_pancreas_main/ML-2020-10-14_fig_2_and_3_pancreas_main.ipynb |
 | Supplementary Fig. 4 | notebooks/fig_2_pancreas_main/ML-2020-10-14_fig_2_and_3_pancreas_main.ipynb |
