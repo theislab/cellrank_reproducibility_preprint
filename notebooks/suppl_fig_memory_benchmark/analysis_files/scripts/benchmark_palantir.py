@@ -1,4 +1,7 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
+
+# this requires terminal states from CellRank's GPCCA (see the time benchmarks)
+
 
 import scanpy as sc
 import palantir
@@ -114,7 +117,7 @@ def _benchmark_palantir(bdata: AnnData, size: int, col: int, annot: pd.DataFrame
 
         print(f"Running with CellRank terminal states `root_cell={root_cell}` and "
               f"`final_states={final_states}`")
-        res = run_palantir(ms_data,
+        res, _ = run_palantir(ms_data,
                            root_cell,
                            terminal_states=final_states,
                            knn=30,
@@ -130,15 +133,15 @@ def _benchmark_palantir(bdata: AnnData, size: int, col: int, annot: pd.DataFrame
 
 
 def benchmark_palantir(adata, size: int, col: int, n_jobs: int = 32) -> None:
-    from utils import PROFILER_ROOT, PROFILER_ROOT_1_CORE, HOME
+    from utils import PROFILER_ROOT, PROFILER_ROOT_1_CORE, DATA_DIR
     path = PROFILER_ROOT_1_CORE if n_jobs == 1 else PROFILER_ROOT
     path = path / "palantir" / f"{size}_{col}.pickle"
 
     if not os.path.isfile(path.parent):
         os.makedirs(path.parent, exist_ok=True)
 
-    annot = pd.read_csv(HOME / "crb_bak" / "data" / "supp_table_4.csv", index_col=0, header=2)
-    with open(str(HOME / "analysis" / "gpcca.pickle"), "rb") as fin:
+    annot = pd.read_csv(DATA_DIR / "morris_data" / "annotations" / "supp_table_4.csv", index_col=0, header=2)
+    with open(DATA_DIR / "benchmarking" / "runtime_analysis" / "gpcca.pickle", "rb") as fin:
         fs_data = pickle.load(fin)[size][str(col)]  # final states data
 
     res = _benchmark_palantir(adata, size, col, annot=annot, fs_data=fs_data, n_jobs=n_jobs)

@@ -1,7 +1,7 @@
 from anndata import AnnData
+from pandas.api.types import is_categorical_dtype
 from typing import Optional, Union, Iterable, Dict, TypeVar, Tuple
 from itertools import combinations
-
 import matplotlib.cm as cm
 import seaborn as sns
 import matplotlib.pyplot as plt
@@ -25,6 +25,7 @@ def _run_cellrank(adata: AnnData,
                   backward: bool = False,
                   show_figures: bool = True,
                   save_figures: bool = True,
+                  mode: str = "deterministic",
                   str_pars: Optional[str] = None):
     """Utility function to run CellRank for the forward/backward process."""
 
@@ -40,8 +41,8 @@ def _run_cellrank(adata: AnnData,
 
     dir_key = 'backward' if backward else 'forward'
 
-    # initialize kernel object
-    kernel = cr.tl.transition_matrix(adata, backward=backward, mode="stochastic",
+    # initialise kernel object
+    kernel = cr.tl.transition_matrix(adata, backward=backward, mode=mode,
                                      n_jobs=4, show_progress_bar=False,
                                      softmax_scale=None, weight_connectivities=0.2)
     g = cr.tl.estimators.GPCCA(kernel)
@@ -63,7 +64,7 @@ def _run_cellrank(adata: AnnData,
 
     while True:
         try:
-            g.compute_metastable_states(cluster_key='clusters', n_states=n_states)
+            g.compute_macrostates(cluster_key='clusters', n_states=n_states)
         except ValueError as e:
             print(f'WARNING: Using one more metastable states than requested, dir={dir_key}')
             n_states += 1
@@ -74,7 +75,7 @@ def _run_cellrank(adata: AnnData,
         found = False
         if metast is None:
             mainst_updated = []
-            current_metast = g.metastable_states.cat.categories
+            current_metast = g.macrostates.cat.categories
 
             for target in finst:
                 mask = np.array([key.startswith(target) for key in current_metast])
@@ -92,9 +93,11 @@ def _run_cellrank(adata: AnnData,
 
     # if mainst. is int, we compute the top n states. If it's a list, we set them to these elements
     if isinstance(mainst_updated, int):
-        g.compute_final_states(method='top_n', n_final_states=mainst_updated)
+        g.compute_terminal_states(method='top_n', n_states=mainst_updated)
+    elif is_categorical_dtype(mainst_updated):
+        g.set_terminal_states(mains_updates)
     else:
-        g.set_final_states_from_metastable_states(mainst_updated)
+        g.set_terminal_states_from_macrostates(mainst_updated)
 
     g.compute_absorption_probabilities(n_jobs=4, backend="loky",
                                        show_progress_bar=False,
@@ -107,7 +110,7 @@ def _run_cellrank(adata: AnnData,
         # plot the main states
     if show_figures:
         g.plot_absorption_probabilities(n_cells=30, same_plot=True)
-    final_states_names = list(g.final_states.cat.categories)
+    final_states_names = list(g.terminal_states.cat.categories)
 
     # in the forwards case, also plot the lineage probs:
     if not backward:
@@ -136,6 +139,7 @@ def run_analysis(adata: AnnData,
                  n_pcs: int = 30,
                  n_neighbors: int = 30,
                  perc_data: float = 1,
+                 mode: str = "deterministic",
                  n_metast_fwd: Optional[int] = 3,
                  n_metast_bwd: Optional[int] = 1,
                  finst_fwd: Union[int, Iterable[str]] = 3,
@@ -164,6 +168,8 @@ def run_analysis(adata: AnnData,
         Neighbors for KNN consturction.
     perc_data
         If smaller than 1, subsample cell numbers to random sample of given size.
+    mode
+        Velocity kernel mode.
     n_metast_fwd, n_metast_bwd
         If int, compute that number of states. If None, compute enough so that the `mainst` are included.
     finst_fwd, finst_bwd
@@ -189,7 +195,7 @@ def run_analysis(adata: AnnData,
     params
         dict containing the input parameters.
 
-    Also, produces plots of spectra, states and lineages
+        Also, produces plots of spectra, states and lineages
     """
 
     # make a copy of the AnnData object
@@ -245,6 +251,7 @@ def run_analysis(adata: AnnData,
     # run the forward and backward processes
     g_fwd, terminal_states_names, n_metast_fwd = _run_cellrank(adata_comp,
                                                                backward=False,
+                                                               mode=mode,
                                                                metast=n_metast_fwd,
                                                                finst=finst_fwd,
                                                                save_figures=save_figures,
@@ -252,6 +259,7 @@ def run_analysis(adata: AnnData,
                                                                show_figures=show_figures)
     g_bwd, initial_states_names, n_metast_bwd = _run_cellrank(adata_comp,
                                                               backward=True,
+                                                              mode=mode,
                                                               metast=n_metast_bwd,
                                                               finst=finst_bwd,
                                                               save_figures=save_figures,
@@ -273,11 +281,11 @@ def run_analysis(adata: AnnData,
     e_gap_fwd, e_gap_bwd = g_fwd.eigendecomposition['eigengap'], g_bwd.eigendecomposition['eigengap']
     fev_mask = adata_comp.obs['clusters'] == 'Fev+'
     if 'rest' in g_fwd.absorption_probabilities.names:
-        fev_data_meta = g_fwd.metastable_states_probabilities[fev_mask, :-1].X
+        fev_data_meta = g_fwd.macrostates_memberships[fev_mask, :-1].X
         fev_data = g_fwd.absorption_probabilities[fev_mask, :-1].X
         # fev_fates = np.mean(g_fwd.absorption_probabilities[fev_mask, :-1].X, axis=0)
     else:
-        fev_data_meta = g_fwd.metastable_states_probabilities[fev_mask].X
+        fev_data_meta = g_fwd.macrostates_memberships[fev_mask].X
         fev_data = g_fwd.absorption_probabilities[fev_mask].X
         # fev_fates = np.mean(g_fwd.absorption_probabilities[fev_mask].X, axis=0)
     fev_fates_mean = np.mean(fev_data, axis=0)
@@ -360,8 +368,8 @@ def plot_correlation_map(data: Dict[Union[str, float], BaseEstimator],
     """
     Utility for computing correlation matrices of fates and plotting these.
 
-    Parameters
-    ----------
+    Params
+    --------
     data
         Dict containing lineage objects as values and parameter settings as keys.
     keys
@@ -377,7 +385,7 @@ def plot_correlation_map(data: Dict[Union[str, float], BaseEstimator],
         Keyword arguments for sns.heatmap.
 
     Returns
-    -------
+    --------
     None
         Nothing, just plots a set of heatmaps, one per `key`.
     """
@@ -480,7 +488,6 @@ def _create_root_final_annotations(
 ) -> None:
     """
     Create categorical annotations of both root and final states.
-    
     This is a utility function for creating a categorical Series object which combines the information about root
     and final states. The Series is written directly to the AnnData object.  This can for example be used to create a
     scatter plot in scvelo.
@@ -497,7 +504,6 @@ def _create_root_final_annotations(
         DirPrefix used in the annotations.
     key_added
         Key added to `adata.obs`.
-        
     Returns
     -------
     None
@@ -532,4 +538,3 @@ def _create_root_final_annotations(
     # write to AnnData
     adata.obs[key_added] = cats_merged
     adata.uns[f"{key_added}_colors"] = colors_merged
-    
