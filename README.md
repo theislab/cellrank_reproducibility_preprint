@@ -37,7 +37,7 @@ figure       | notebook path
 | Supplementary Fig. 22 | notebooks/ |
 | Supplementary Fig. 23 | notebooks/ |
 | Supplementary Fig. 24 | notebooks/ |
-| Supplementary Fig. 25 | Not notebook, microscopy results, see Online methods |
+| Supplementary Fig. 25 | No notebook, microscopy results, see Online methods |
 | Supplementary Table 1 | notebooks/ |
 | Supplementary Table 2 | notebooks/ |
 | Supplementary Table 3 | notebooks/ |
