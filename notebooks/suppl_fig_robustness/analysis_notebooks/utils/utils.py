@@ -33,10 +33,10 @@ def _run_cellrank(adata: AnnData,
     if metast is not None and not isinstance(metast, int):
         raise ValueError(f'`metast` must be `int` or `None`, found {type(metast)}')
 
-    if not isinstance(finst, int) and not isinstance(finst, list) and finst is not None:
+    if not isinstance(finst, (int, list, pd.Series)) and finst is not None:
         raise ValueError(f'`finst` must be `int` or `list` or None, found {type(finst)}')
 
-    if metast is None and not isinstance(finst, list):
+    if metast is None and not isinstance(finst, (list, pd.Series)):
         raise ValueError('When `metast` is None, `finst` must be a list of str')
 
     dir_key = 'backward' if backward else 'forward'
@@ -59,6 +59,8 @@ def _run_cellrank(adata: AnnData,
     # until the desired states are present
     if isinstance(metast, int):
         n_states = metast
+    elif isinstance(finst, pd.Series):
+        n_states = len(finst.cat.categories)
     elif metast is None:
         n_states = len(finst)
 
@@ -77,7 +79,7 @@ def _run_cellrank(adata: AnnData,
             mainst_updated = []
             current_metast = g.macrostates.cat.categories
 
-            for target in finst:
+            for target in (finst.cat.categories if is_categorical_dtype(finst) else finst):
                 mask = np.array([key.startswith(target) for key in current_metast])
                 if not mask.any():
                     print(f'WARNING: Using one more metastable state than requested, dir={dir_key}')
@@ -92,10 +94,10 @@ def _run_cellrank(adata: AnnData,
             break
 
     # if mainst. is int, we compute the top n states. If it's a list, we set them to these elements
-    if isinstance(mainst_updated, int):
+    if is_categorical_dtype(finst):
+        g.set_terminal_states(finst)
+    elif isinstance(mainst_updated, int):
         g.compute_terminal_states(method='top_n', n_states=mainst_updated)
-    elif is_categorical_dtype(mainst_updated):
-        g.set_terminal_states(mains_updates)
     else:
         g.set_terminal_states_from_macrostates(mainst_updated)
 
