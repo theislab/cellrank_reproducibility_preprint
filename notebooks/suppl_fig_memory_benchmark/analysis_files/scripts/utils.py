@@ -21,7 +21,7 @@ from benchmark_palantir import benchmark_palantir
 from benchmark_cellrank import benchmark_gpcca, benchmark_cflare
 
 
-sys.path.insert(0, "../../../../")
+sys.path.insert(0, "../../../")
 from paths import DATA_DIR
 
 

@@ -13,7 +13,7 @@ stopifnot(length(args) == 2)
 
 size <- as.numeric(args[1])
 split <- as.numeric(args[2])
-profiler_root <- "../../../data/benchmarking/memory_analysys/fateid/"
+profiler_root <- "../../../data/benchmarking/memory_analysis/fateid/"
 fname = paste(profiler_root, paste("fateid", size, split, sep="_"), ".txt", sep="")
 drivers <- paste("../../../data/morris_data/", "lin_drivers/", sep="")
 
