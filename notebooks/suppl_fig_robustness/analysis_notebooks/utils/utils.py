@@ -64,7 +64,7 @@ def _run_cellrank(adata: AnnData,
 
     while True:
         try:
-            g.compute_metastable_states(cluster_key='clusters', n_states=n_states)
+            g.compute_macrostates(cluster_key='clusters', n_states=n_states)
         except ValueError as e:
             print(f'WARNING: Using one more metastable states than requested, dir={dir_key}')
             n_states += 1
@@ -75,7 +75,7 @@ def _run_cellrank(adata: AnnData,
         found = False
         if metast is None:
             mainst_updated = []
-            current_metast = g.metastable_states.cat.categories
+            current_metast = g.macrostates.cat.categories
 
             for target in finst:
                 mask = np.array([key.startswith(target) for key in current_metast])
@@ -281,11 +281,11 @@ def run_analysis(adata: AnnData,
     e_gap_fwd, e_gap_bwd = g_fwd.eigendecomposition['eigengap'], g_bwd.eigendecomposition['eigengap']
     fev_mask = adata_comp.obs['clusters'] == 'Fev+'
     if 'rest' in g_fwd.absorption_probabilities.names:
-        fev_data_meta = g_fwd.metastable_states_probabilities[fev_mask, :-1].X
+        fev_data_meta = g_fwd.macrostates_memberships[fev_mask, :-1].X
         fev_data = g_fwd.absorption_probabilities[fev_mask, :-1].X
         # fev_fates = np.mean(g_fwd.absorption_probabilities[fev_mask, :-1].X, axis=0)
     else:
-        fev_data_meta = g_fwd.metastable_states_probabilities[fev_mask].X
+        fev_data_meta = g_fwd.macrostates_memberships[fev_mask].X
         fev_data = g_fwd.absorption_probabilities[fev_mask].X
         # fev_fates = np.mean(g_fwd.absorption_probabilities[fev_mask].X, axis=0)
     fev_fates_mean = np.mean(fev_data, axis=0)
