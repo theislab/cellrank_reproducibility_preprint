@@ -182,4 +182,6 @@ dependencies:
     - widgetsnbextension==3.5.1
     - wrapt==1.12.1
     - anndata2ri==1.0.4
+    - cellrank==1.0.0
+    - scvelo==0.2.2
 

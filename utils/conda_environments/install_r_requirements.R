@@ -9,6 +9,9 @@ if (!requireNamespace("BiocManager", quietly = TRUE))
 if (!requireNamespace("devtools", quietly = TRUE))
     install.packages("devtools", repos=REPOS)
 
+library(devtools)
+library(BiocManager)
+
 # FateID
 devtools::install_github("dgrun/FateID")
 devtools::install_github("dgrun/RaceID")
