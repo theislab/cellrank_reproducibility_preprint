@@ -26,7 +26,7 @@ figure         | notebook path
 | Suppl. Fig. 11 | [notebooks/fig_2_pancreas_main/ML-2020-10-14_fig_2_and_3_pancreas_main.ipynb](notebooks/fig_2_pancreas_main/ML-2020-10-14_fig_2_and_3_pancreas_main.ipynb) |
 | Suppl. Fig. 12 | [notebooks/fig_2_pancreas_main/ML-2020-10-14_fig_2_and_3_pancreas_main.ipynb](notebooks/fig_2_pancreas_main/ML-2020-10-14_fig_2_and_3_pancreas_main.ipynb) |
 | Suppl. Fig. 13 | [notebooks/fig_2_pancreas_main/ML-2020-10-14_fig_2_and_3_pancreas_main.ipynb](notebooks/fig_2_pancreas_main/ML-2020-10-14_fig_2_and_3_pancreas_main.ipynb) |
-| Suppl. Fig. 14 | [notebooks/fig_4_uncertainty/ML-2020-10-17_fig_4_uncertainty.ipynb](notebooks/fig_4_uncertainty/ML-2020-10-17_fig_4_uncertainty.ipynb) and [notebooks/suppl_fig_uncertainty](notebooks/suppl_fig_uncertainty) |
+| Suppl. Fig. 14 | [notebooks/fig_4_uncertainty/ML-2020-10-17_fig_4_uncertainty.ipynb](notebooks/fig_4_uncertainty/ML-2020-10-17_fig_4_uncertainty.ipynb) |
 | Suppl. Fig. 15 | [notebooks/suppl_fig_robustness/MK_2020-10-16_robustness.ipynb](notebooks/suppl_fig_robustness/MK_2020-10-16_robustness.ipynb) |
 | Suppl. Fig. 16 | [notebooks/suppl_fig_robustness/MK_2020-10-16_robustness.ipynb](notebooks/suppl_fig_robustness/MK_2020-10-16_robustness.ipynb) |
 | Suppl. Fig. 17 | [notebooks/fig_2_pancreas_main/ML-2020-10-14_fig_2_and_3_pancreas_main.ipynb](notebooks/fig_2_pancreas_main/ML-2020-10-14_fig_2_and_3_pancreas_main.ipynb) and [notebooks/fig_5_benchmarking/palantir/ML-2020-10-17_palantir.ipynb](notebooks/fig_5_benchmarking/palantir/ML-2020-10-17_palantir.ipynb)|
