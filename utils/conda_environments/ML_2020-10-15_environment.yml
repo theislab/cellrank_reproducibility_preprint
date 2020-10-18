@@ -3,6 +3,7 @@ channels:
   - bioconda
   - conda-forge
   - defaults
+  - r
 dependencies:
   - brotlipy=0.7.0
   - ca-certificates=2020.6.20
@@ -73,6 +74,7 @@ dependencies:
   - wheel=0.35.1
   - xz=5.2.5
   - zlib=1.2.11
+  - r-base
   - pip:
     - memory_profiler==0.57.0
     - cloudpickle==1.6.0
@@ -179,4 +181,5 @@ dependencies:
     - webencodings==0.5.1
     - widgetsnbextension==3.5.1
     - wrapt==1.12.1
+    - anndata2ri==1.0.4
 
