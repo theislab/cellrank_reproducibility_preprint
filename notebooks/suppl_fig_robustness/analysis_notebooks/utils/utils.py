@@ -215,13 +215,17 @@ def run_analysis(adata: AnnData,
         n_cells = int(perc_data * adata_comp.n_obs)
         np.random.seed(seed)
         bcs = np.random.choice(adata_comp.obs_names, size=n_cells, replace=False)
+        if is_categorical_dtype(finst_fwd):
+            adata_comp.obs['tmp'] = finst_fwd.values
+            adata_comp.obs['tmp'] = adata_comp.obs['tmp'].astype('category')
         print(f'Downsampling to {n_cells} cells')
         adata_comp = adata_comp[bcs].copy()
+        finst_fwd = adata_comp.obs['tmp'].astype('category')
 
     # ------------------------------------------------------
     # pre-processing and scvelo
 
-    # filter, normalise, log transform
+    # filter, normalize, log transform
     scv.pp.filter_genes(adata_comp, min_shared_counts=min_shared_counts)
     scv.pp.normalize_per_cell(adata_comp)
     scv.pp.filter_genes_dispersion(adata_comp, n_top_genes=n_top_genes)
