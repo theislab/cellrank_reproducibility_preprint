@@ -139,5 +139,6 @@ dmypy.json
 *.jpeg
 *.svg
 *.mtx
+*.txt
 
 .idea
