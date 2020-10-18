@@ -1,10 +1,13 @@
 #!/usr/bin/env Rscript
 
+REPOS = "https://cloud.r-project.org"
+
+
 if (!requireNamespace("BiocManager", quietly = TRUE))
-    install.packages("BiocManager")
+    install.packages("BiocManager", repos=REPOS)
 
 if (!requireNamespace("devtools", quietly = TRUE))
-    install.packages("devtools")
+    install.packages("devtools", repos=REPOS)
 
 # FateID
 devtools::install_github("dgrun/FateID")
@@ -15,7 +18,7 @@ BiocManager::install("destiny")
 devtools::install_git("https://git.embl.de/velten/STEMNET/")
 
 # Utilities
-install.packages("SparseM", repos="https://cloud.r-project.org")
-install.packages("Matrix", repos="https://cloud.r-project.org")
-install.packages("R.utils", repos="https://cloud.r-project.org")
-install.packages("peakRAM", repos="https://cloud.r-project.org")
+install.packages("SparseM", repos=REPOS)
+install.packages("Matrix", repos=REPOS)
+install.packages("R.utils", repos=REPOS)
+install.packages("peakRAM", repos=REPOS)
