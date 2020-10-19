@@ -5,6 +5,7 @@ channels:
   - defaults
   - r
 dependencies:
+  - cellrank-krylov=1.0.0
   - brotlipy=0.7.0
   - ca-certificates=2020.6.20
   - cairo=1.16.0
@@ -182,6 +183,11 @@ dependencies:
     - widgetsnbextension==3.5.1
     - wrapt==1.12.1
     - anndata2ri==1.0.4
-    - cellrank==1.0.0
     - scvelo==0.2.2
-
+    - rpy==3.3.2
+    - pydtmc==4.9.0
+    - palantir==1.0.0
+    - phenograph==1.5.7
+    - louvain==0.6.1
+    - python-igraph==0.8.3
+    - bezier

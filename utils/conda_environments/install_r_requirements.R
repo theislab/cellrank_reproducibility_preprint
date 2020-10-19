@@ -21,6 +21,7 @@ BiocManager::install("destiny")
 devtools::install_git("https://git.embl.de/velten/STEMNET/")
 
 # Utilities
+install.packages("mgcv", repos=REPOS)
 install.packages("SparseM", repos=REPOS)
 install.packages("Matrix", repos=REPOS)
 install.packages("R.utils", repos=REPOS)
