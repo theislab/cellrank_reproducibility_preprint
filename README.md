@@ -1,7 +1,12 @@
-# cellrank_reproducibility
-Code to reproduce results from the CellRank manuscript. Please find the main CellRank website at [cellrank.org](https://cellrank.org).
+# CellRank's reproducibility repository
+Code to reproduce results from the CellRank manuscript. Please find the main CellRank website at [cellrank.org](https://cellrank.org) and the preprint at [bioRxiv](https://doi.org/10.1101/2020.10.19.345983).
 
-## Where to find which analysis
+## Where to find the data
+Raw published data for the [pancreas](https://doi.org/10.1242/dev.173849), [lung](https://doi.org/10.1038/s41467-020-17358-3) and [reprogramming](https://doi.org/10.1038/s41586-018-0744-4) examples is available from the Gene Expression Omnibus (GEO) under accession codes [GSE132188](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE132188), [GSE141259](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE141259) and [GSE99915](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE99915), respectively. Processed data, including spliced and unspliced count abundances, is available from [figshare](https://doi.org/10.6084/m9.figshare.c.5172299). For convenience, the [pancreas](https://doi.org/10.1242/dev.173849) and [lung](https://doi.org/10.1038/s41467-020-17358-3) examples
+are also available through `cellrank.datasets`.
+
+
+## Where to find which analysis notebook
 figure         | notebook path     
 ---------------| ---------------
 | Fig. 1 | [notebooks/fig_1_concept/ML_2020-10-13_fig_1_concept.ipynb](notebooks/fig_1_concept/ML_2020-10-13_fig_1_concept.ipynb) |
