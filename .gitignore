@@ -140,5 +140,6 @@ dmypy.json
 *.svg
 *.mtx
 *.txt
+/notebooks/sample_notebook
 
 .idea
