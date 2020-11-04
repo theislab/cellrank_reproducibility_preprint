@@ -9,7 +9,7 @@ are also available through `cellrank.datasets`.
 ## Where to find which analysis notebook
 figure         | notebook path     
 ---------------| ---------------
-| Fig. 1 | [notebooks/fig_1_concept/ML_2020-10-13_fig_1_concept.ipynb](notebooks/fig_1_concept/ML_2020-10-13_fig_1_concept.ipynb) |
+| Fig. 1 | [notebooks/fig_1_concept/ML-2020-10-13_fig_1_concept.ipynb](notebooks/fig_1_concept/ML-2020-10-13_fig_1_concept.ipynb) |
 | Fig. 2 | [notebooks/fig_2_pancreas_main/ML-2020-10-14_fig_2_and_3_pancreas_main.ipynb](notebooks/fig_2_pancreas_main/ML-2020-10-14_fig_2_and_3_pancreas_main.ipynb) |
 | Fig. 3 | [notebooks/fig_2_pancreas_main/ML-2020-10-14_fig_2_and_3_pancreas_main.ipynb](notebooks/fig_2_pancreas_main/ML-2020-10-14_fig_2_and_3_pancreas_main.ipynb) |
 | Fig. 4 | [notebooks/fig_4_uncertainty/ML-2020-10-17_fig_4_uncertainty.ipynb](notebooks/fig_4_uncertainty/ML-2020-10-17_fig_4_uncertainty.ipynb) and [notebooks/suppl_fig_robustness/MK_2020-10-16_robustness.ipynb](notebooks/suppl_fig_robustness/MK_2020-10-16_robustness.ipynb)|
